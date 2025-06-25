@@ -1,5 +1,6 @@
 mod music;
 
+use actix_cors::Cors;
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
 use std::{path::PathBuf, sync::Mutex};
 
@@ -29,14 +30,21 @@ async fn main() -> std::io::Result<()> {
     ));
 
     HttpServer::new(move || {
-        App::new().service(
+        App::new().service(default).service(
             web::scope("/music")
+                .wrap(
+                    Cors::permissive()
+                        .allow_any_origin()
+                        .allow_any_method()
+                        .allow_any_header()
+                        .max_age(3600),
+                )
                 .app_data(app_state.clone())
                 .service(music::list)
                 .service(music::stream),
         )
     })
-    .bind(("127.0.0.1", 8081))?
+    .bind(("0.0.0.0", 8081))?
     .run()
     .await
 }
