@@ -59,9 +59,10 @@ pub async fn load_music_files(music_dir: &Path) -> Result<HashMap<String, MusicI
                         .unwrap_or(path)
                         .to_string_lossy()
                         .into_owned();
-
+                    let mut file = filename.to_string();
+                    file.truncate(file.len() - 4);
                     let track_info = MusicInfo {
-                        file: filename.to_string(),
+                        file,
                         path: relative_path.clone(),
                         mime: mime_type,
                     };
