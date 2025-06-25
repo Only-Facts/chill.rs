@@ -1,0 +1,17 @@
+services:
+  api:
+    build: ./backend/
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./backend/music/:/app/music:ro
+    environment:
+      - MUSIC_DIR:/app/music/
+    restart: unless-stopped
+
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend/:/usr/share/nginx/html:ro
