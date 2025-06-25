@@ -144,8 +144,6 @@ pub async fn stream(
                     file_size
                 );
 
-                println!("Serving Range {}", content_range);
-
                 let stream = tokio_util::io::ReaderStream::new(file.take(content_length));
 
                 return Ok(HttpResponse::PartialContent()
