@@ -35,7 +35,6 @@ pub async fn load_music_files(music_dir: &Path) -> Result<HashMap<String, MusicI
     let mut tracks = HashMap::new();
     println!("Scanning music directory: {:?}", music_dir);
 
-    // Ensure the music directory exists.
     if !music_dir.exists() {
         return Err(format!("Music directory does not exist: {:?}", music_dir));
     }
@@ -49,26 +48,24 @@ pub async fn load_music_files(music_dir: &Path) -> Result<HashMap<String, MusicI
     for entry in WalkDir::new(music_dir).into_iter().filter_map(|e| e.ok()) {
         let path = entry.path();
         if path.is_file() {
-            // Guess the MIME type based on file extension.
             let mime_type = mime_guess::from_path(path)
                 .first_or_text_plain()
                 .to_string();
 
-            // Check if it's an audio file based on common MIME types.
             if mime_type.starts_with("audio/") {
                 if let Some(filename) = path.file_name().and_then(|s| s.to_str()) {
                     let relative_path = path
                         .strip_prefix(music_dir)
-                        .unwrap_or(path) // Fallback if prefix fails (shouldn't for files within music_dir)
+                        .unwrap_or(path)
                         .to_string_lossy()
-                        .into_owned(); // Convert Cow to owned String
+                        .into_owned();
 
                     let track_info = MusicInfo {
                         file: filename.to_string(),
-                        path: relative_path.clone(), // Use relative path for streaming URL
+                        path: relative_path.clone(),
                         mime: mime_type,
                     };
-                    tracks.insert(relative_path, track_info); // Store by relative path
+                    tracks.insert(relative_path, track_info);
                     println!("Found music file: {}", filename);
                 }
             }
