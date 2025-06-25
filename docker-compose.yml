@@ -1,4 +1,18 @@
 services:
+  db:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: studydb
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./backend/studydb.sql:/docker-entrypoint-initdb.d/studydb.sql
+    networks:
+      - back-tier
+    ports:
+      - 3307:3306
+    restart: on-failure
+
   api:
     build: ./backend/
     ports:
@@ -7,6 +21,10 @@ services:
       - ./backend/music/:/app/music:ro
     environment:
       - MUSIC_DIR:/app/music/
+    networks:
+      - back-tier
+    depends_on:
+      - db
     restart: unless-stopped
 
   web:
@@ -15,3 +33,9 @@ services:
       - "8080:80"
     volumes:
       - ./frontend/:/usr/share/nginx/html:ro
+
+volumes:
+  db-data:
+
+networks:
+  back-tier:
