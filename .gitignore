@@ -1,2 +1,3 @@
 backend/Cargo.lock
 backend/target
+backend/.env
