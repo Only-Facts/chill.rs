@@ -1,8 +1,10 @@
+pub mod db;
 mod music;
 
 use actix_cors::Cors;
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
-use std::{path::PathBuf, sync::Mutex};
+use sqlx::mysql::MySqlPoolOptions;
+use std::{env, path::PathBuf, sync::Mutex};
 
 const MUSIC_DIRECTORY_ENV_VAR: &str = "MUSIC_DIR";
 
@@ -27,21 +29,40 @@ pub async fn api() -> std::io::Result<()> {
         music_dir.clone(),
         Mutex::new(tracks_map),
     ));
-
+    dotenvy::dotenv().ok();
+    let database_url = env::var("DATABASE_URL").expect("database_url must be set");
+    let pool = match MySqlPoolOptions::new().connect(&database_url).await {
+        Ok(p) => web::Data::new(p),
+        Err(e) => return Err(std::io::Error::new(std::io::ErrorKind::Other, e)),
+    };
     HttpServer::new(move || {
-        App::new().service(default).service(
-            web::scope("/music")
-                .wrap(
-                    Cors::permissive()
-                        .allow_any_origin()
-                        .allow_any_method()
-                        .allow_any_header()
-                        .max_age(3600),
-                )
-                .app_data(app_state.clone())
-                .service(music::list)
-                .service(music::stream),
-        )
+        App::new()
+            .service(default)
+            .service(
+                web::scope("/music")
+                    .wrap(
+                        Cors::permissive()
+                            .allow_any_origin()
+                            .allow_any_method()
+                            .allow_any_header()
+                            .max_age(3600),
+                    )
+                    .app_data(app_state.clone())
+                    .service(music::list)
+                    .service(music::stream),
+            )
+            .service(
+                web::scope("/auth")
+                    .wrap(
+                        Cors::permissive()
+                            .allow_any_origin()
+                            .allow_any_method()
+                            .allow_any_header()
+                            .max_age(3600),
+                    )
+                    .app_data(pool.clone())
+                    .service(auth::show_users),
+            )
     })
     .bind(("0.0.0.0", 8081))?
     .run()
