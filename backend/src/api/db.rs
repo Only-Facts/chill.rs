@@ -36,6 +36,13 @@ pub async fn get_users(pool: &MySqlPool) -> Result<Vec<User>, sqlx::Error> {
     Ok(users)
 }
 
+pub async fn get_user(pool: &MySqlPool, id: u32) -> Result<Vec<User>, sqlx::Error> {
+    let user = sqlx::query_as!(User, "SELECT * FROM user WHERE id = ?", id)
+        .fetch_all(pool)
+        .await?;
+    Ok(user)
+}
+
 pub async fn add_user(
     pool: &MySqlPool,
     password: &str,
