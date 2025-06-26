@@ -1,3 +1,4 @@
+mod auth;
 pub mod db;
 mod music;
 
