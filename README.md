@@ -1,4 +1,3 @@
 <p align="center">
-  <img src="StudyMoodlogo.png" alt="StudyMood Logo">
+  <img src="frontend/assets/img/StudyMoodlogo.png" alt="StudyMood Logo">
 </p>
-
