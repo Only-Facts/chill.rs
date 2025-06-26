@@ -62,7 +62,8 @@ pub async fn api() -> std::io::Result<()> {
                             .max_age(3600),
                     )
                     .app_data(pool.clone())
-                    .service(auth::show_users),
+                    .service(auth::show_users)
+                    .service(auth::show_user),
             )
     })
     .bind(("0.0.0.0", 8081))?
