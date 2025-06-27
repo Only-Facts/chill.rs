@@ -2,3 +2,4 @@ backend/Cargo.lock
 backend/target
 backend/.env
 backend/music
+frontend/assets/scripts/config.mjs
