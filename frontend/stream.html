@@ -1,0 +1,106 @@
+<!DOCTYPE>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMood - Stream</title>
+    <link rel="stylesheet" href="assets/styles/default.css">
+    <link rel="icon" href="assets/img/StudyMoodlogo.png" type="image/x-icon">
+  </head>
+  <body>
+    <header>
+      <div class="header-logo">
+        <img src="assets/img/StudyMoodlogo2.png" alt="Weather Logo" class="logo"/>
+      </div>
+      <div class="header-center">
+        <h1>StudyMood</h1>
+        <nav>
+          <div class="header-box">
+            <a href="index.html">
+              <div class="box">
+                Home
+              </div>
+            </a>
+            <a href="stream.html">
+              <div class="box">
+                Stream
+              </div>
+            </a>
+          </div>
+        </nav>
+      </div>
+    <div class="header-spacer" />
+
+    <div id="color-mode">
+      <button onclick="toggle()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" id="svg-color">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+        </svg>
+      </button>
+    </div>
+    </header>
+
+    <div class="audio-player">
+
+      <div class="audio-controls">
+        <div class="audio-controls-left">
+          <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+
+          <div id="status-message" class="loading-message">Loading music...</div>
+        </div>
+
+        <div id="audio-buttons">
+          <button id="previous" class="audio-btn" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19V5h2v14H6zm3-7 8.5 6V6L9 13z"/></svg>
+          </button>
+
+          <button id="play-pause" class="audio-btn" aria-label="Play/Pause">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+
+          <button id="next" class="audio-btn" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5v14h-2V5h2zm-3 7L4.5 6v12L13 12z"/></svg>
+          </button>
+        </div>
+
+        <div class="audio-volume">
+          <div class="volume-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 9v6h4l5 5V4l-5 5H4z"/>
+              <path d="M16.5 8.5a5 5 0 0 1 0 7"/>
+              <path d="M19 5a9 9 0 0 1 0 14"/>
+            </svg>
+          </div>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div id="audio-progress">
+        <div id="progress"></div>
+      </div>
+
+      <audio id="audio"></audio>
+    </div>
+  </body>
+  <script>
+    function toggle() {
+      document.body.classList.toggle("light");
+      const svg = document.getElementById("svg-color");
+
+      if (!document.body.classList.contains("light")) {
+        svg.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>`;
+      } else {
+        svg.innerHTML = `<circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+      }
+    }
+  </script>
+  <script src="assets/scripts/audio.js"></script>
+  <script src="assets/scripts/music-api.js"></script>
+</html>
