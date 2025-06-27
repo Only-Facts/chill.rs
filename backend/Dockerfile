@@ -2,7 +2,7 @@ FROM rust:1.87-slim-bookworm
 
 WORKDIR /app
 
-COPY Cargo.toml Cargo.lock /app/
+COPY Cargo.toml Cargo.lock .env /app/
 
 COPY src /app/src
 
