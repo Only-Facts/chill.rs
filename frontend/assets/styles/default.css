@@ -303,7 +303,6 @@ nav a {
 }
 
 .audio-volume {
-  position: relative;
   display: grid;
   flex-direction: column;
   align-items: center;
@@ -414,6 +413,7 @@ audio {
   .audio-volume {
     position: static;
     margin-top: 1em;
+    margin-left: 7em;
     width: 100%;
     display: flex;
     flex-direction: column;
