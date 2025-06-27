@@ -140,12 +140,12 @@ nav a {
 .audio-player {
   background-color: var(--transparent-bg);
   border: 1px solid var(--transparent-bg-light);
-  border-radius: 50px;
+  border-radius: 35px;
   position: relative;
   display: row;
   justify-content: center;
   align-items: center;
-  top: 700px;
+  top: 75%;
   width: 95%;
   box-shadow: var(--box-shadow);
 }
@@ -157,9 +157,9 @@ nav a {
 #audio-progress {
   background: var(--transparent-bg-light);
   height: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
-  border-radius: 0px 0px 200px 200px / 0px 0px 100px 100px;
+  margin-left: 17px;
+  margin-right: 17px;
+  border-radius: 50px 50px 200px 200px;
   cursor: pointer;
   position: relative;
 }
@@ -168,7 +168,7 @@ nav a {
   background: var(--grad-purple-green);
   height: 100%;
   width: 0%;
-  border-radius: 0px 0px 200px 200px / 0px 0px 100px 100px;
+  border-radius: 50px 50px 200px 200px; 
   cursor: pointer;
   box-shadow: var(--shadow);
 }
@@ -184,7 +184,9 @@ nav a {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: 13%;
+  position: relative;
+  top: 0%;
+  left: 1%;
 }
 
 .audio-buttons {
@@ -220,16 +222,25 @@ nav a {
 #previous {
   background: none;
   font-size: 24px;
+  position: absolute;
+  top: 14%;
+  left: 44%;
 }
 
 #play-pause {
   background: none;
   font-size: 24px;
+  position: absolute;
+  top: 14%;
+  left: 48%;
 }
 
 #next {
   background: none;
   font-size: 24px;
+  position: absolute;
+  top: 14%;
+  left: 52%;
 }
 
 .audio-volume {
@@ -238,7 +249,9 @@ nav a {
   flex-direction: column;
   align-items: center;
   height: 80px;
-  margin-left: 36%;
+  position: absolute;
+  top: 0%;
+  left: 90%;
   margin-right: 120px;
 }
 
