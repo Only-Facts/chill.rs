@@ -186,6 +186,7 @@ nav a {
   position: relative;
   top: 0%;
   left: 1%;
+  max-width: 40%;
 }
 
 .audio-buttons {
