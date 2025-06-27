@@ -20,10 +20,10 @@ function formatTime(sec) {
 playPause.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
-    playIcon.innerHTML = `<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>`; // Pause icon
+    playIcon.innerHTML = `<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>`;
   } else {
     audio.pause();
-    playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`; // Play icon
+    playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
   }
 });
 

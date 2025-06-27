@@ -3,6 +3,7 @@ const audioPlayer = document.getElementById('audio');
 const statusMessageElement = document.getElementById('status-message');
 const prevBtn = document.getElementById("previous");
 const nextBtn = document.getElementById("next");
+const play = document.getElementById('playIcon');
 
 let trackList = [];
 let currentTrackIndex = 0;
@@ -53,12 +54,14 @@ prevBtn.addEventListener('click', () => {
   if (trackList.length === 0) return;
   currentTrackIndex = (currentTrackIndex - 1 + trackList.length) % trackList.length;
   loadTrack(currentTrackIndex);
+  play.innerHTML = `<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>`;
 });
 
 nextBtn.addEventListener('click', () => {
   if (trackList.length === 0) return;
   currentTrackIndex = (currentTrackIndex + 1) % trackList.length;
   loadTrack(currentTrackIndex);
+  play.innerHTML = `<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>`;
 });
 
 document.addEventListener('DOMContentLoaded', fetchMusicList);
