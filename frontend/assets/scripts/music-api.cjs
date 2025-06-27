@@ -1,4 +1,4 @@
-const API_BASE_URL = require("./config.mjs").API_BASE_URL;
+const API_BASE_URL = "http://localhost:8081";
 const audioPlayer = document.getElementById('audio');
 const statusMessageElement = document.getElementById('status-message');
 const prevBtn = document.getElementById("previous");
