@@ -37,6 +37,12 @@ audio.addEventListener('loadedmetadata', () => {
   durationSpan.textContent = formatTime(audio.duration);
 });
 
+audio.addEventListener('ended', () => {
+  if (currentPlaylist.length === 0) return;
+  currentTrackIndex = (currentTrackIndex + 1) % currentPlaylist.length;
+  loadTrack(currentTrackIndex);
+});
+
 progressContainer.addEventListener('click', (e) => {
   const rect = progressContainer.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
