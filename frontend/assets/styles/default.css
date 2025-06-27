@@ -345,3 +345,90 @@ button {
 audio {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 1em 0.5em;
+  }
+
+  .header-logo {
+    margin: 0.5em 0;
+  }
+
+  .header-center {
+    right: 0;
+    text-align: center;
+    align-items: center;
+  }
+
+  .header-box {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .box {
+    height: auto;
+    padding: 0.5em 1em;
+  }
+
+  .header-spacer {
+    display: none;
+  }
+
+  #color-mode {
+    margin-top: 0.5em;
+  }
+
+  .audio-player {
+    width: 95%;
+    flex-direction: column;
+    padding: 1em 0.5em;
+  }
+
+  .audio-controls {
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .audio-controls-left {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #previous, #play-pause, #next {
+    position: static;
+    margin: 0.5em;
+  }
+
+  .playlist-selector {
+    position: static;
+    margin-top: 1em;
+  }
+
+  .audio-volume {
+    position: static;
+    margin-top: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #volume-slider {
+    width: 80%;
+    position: static;
+    margin-top: 0.5em;
+  }
+
+  #audio-progress {
+    margin: 1em 0;
+  }
+}
+</style>
+
