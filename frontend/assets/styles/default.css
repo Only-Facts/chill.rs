@@ -183,7 +183,6 @@ nav a {
 .audio-controls-left {
   display: flex;
   align-items: center;
-  gap: 10px;
   position: relative;
   top: 0%;
   left: 1%;
@@ -241,6 +240,66 @@ nav a {
   position: absolute;
   top: 14%;
   left: 52%;
+}
+
+.playlist-selector {
+  position: absolute;
+  top: 5%;
+  left: 70%;
+  display: inline-block;
+  margin: 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+.playlist-toggle {
+  background-color: var(--transparent-bg);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease;
+}
+
+.playlist-toggle:hover {
+  background-color: var(--transparent-bg);
+}
+
+.playlist-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  z-index: 100;
+  background-color: var(--transparent-bg);
+  color: var(--text);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  overflow: hidden;
+  width: 180px;
+}
+
+.playlist-menu li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--transparent-bg);
+  transition: background 0.2s ease;
+}
+
+.playlist-menu li:last-child {
+  border-bottom: none;
+}
+
+.playlist-menu li:hover {
+  background-color: var(--transparent-light);
+}
+
+.hidden {
+  display: none;
 }
 
 .audio-volume {
