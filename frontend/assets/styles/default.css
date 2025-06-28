@@ -27,14 +27,14 @@ body.light {
 }
 
 @font-face {
-  font-family: mainFont;
-  src: url(../fonts/DaddyTime.ttf);
+  font-family: 'mainFont';
+  src: url('../fonts/DaddyTimeMono/DaddyTimeMonoNerdFont-Regular.ttf');
 }
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: mainFont;
+  font-family: mainFont, sans-serif;
 }
 
 body {
@@ -245,7 +245,6 @@ nav a {
   left: 70%;
   display: inline-block;
   margin: 1rem;
-  font-family: 'Courier New', monospace;
 }
 
 .playlist-toggle {
@@ -258,6 +257,7 @@ nav a {
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   transition: background-color 0.2s ease;
+  font-family: mainFont, sans-serif;
 }
 
 .playlist-toggle:hover {
