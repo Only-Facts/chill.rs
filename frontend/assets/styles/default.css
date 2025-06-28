@@ -26,10 +26,15 @@ body.light {
   --transparent-bg-light: hsla(0, 0%, 90%, 0.4);
 }
 
+@font-face {
+  font-family: mainFont;
+  src: url(../fonts/DaddyTime.ttf);
+}
+
 html, body {
   height: 100%;
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: mainFont;
 }
 
 body {
