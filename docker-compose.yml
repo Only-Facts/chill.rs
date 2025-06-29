@@ -20,8 +20,8 @@ services:
     volumes:
       - ./backend/music/:/app/music:ro
     environment:
-      - MUSIC_DIR:/app/music/
-      - DATABASE_URL:"mysql://root:epitech@db:3306/studydb"
+      - MUSIC_DIR=/app/music/
+      - DATABASE_URL=mysql://root:epitech@db:3306/studydb
     networks:
       - back-tier
     depends_on:
