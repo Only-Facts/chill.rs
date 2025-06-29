@@ -5,7 +5,7 @@ mod music;
 use actix_cors::Cors;
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
 use sqlx::mysql::MySqlPoolOptions;
-use std::{env, path::PathBuf, sync::Mutex};
+use std::{env, path::PathBuf, sync::Mutex, time::Duration};
 
 const MUSIC_DIRECTORY_ENV_VAR: &str = "MUSIC_DIR";
 
@@ -32,7 +32,12 @@ pub async fn api() -> std::io::Result<()> {
     ));
     dotenvy::dotenv().ok();
     let database_url = env::var("DATABASE_URL").expect("database_url must be set");
-    let pool = match MySqlPoolOptions::new().connect(&database_url).await {
+    let pool = match MySqlPoolOptions::new()
+        .max_connections(5)
+        .acquire_timeout(Duration::from_secs(10))
+        .connect(&database_url)
+        .await
+    {
         Ok(p) => web::Data::new(p),
         Err(e) => return Err(std::io::Error::new(std::io::ErrorKind::Other, e)),
     };
