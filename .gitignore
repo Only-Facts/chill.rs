@@ -2,3 +2,5 @@ backend/Cargo.lock
 backend/target
 backend/.env
 backend/music
+Cargo.lock
+target/
