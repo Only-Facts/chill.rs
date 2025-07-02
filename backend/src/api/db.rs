@@ -1,4 +1,3 @@
-use serde::Serialize;
 use sqlx::types::chrono::{DateTime, Utc};
 use sqlx::{FromRow, mysql::MySqlPool};
 
